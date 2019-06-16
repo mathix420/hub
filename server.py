@@ -8,11 +8,10 @@ addresses = []
 
 
 def main(host='0.0.0.0', port=9999):
-    sock = socket.socket(socket.AF_INET, # Internet
-                         socket.SOCK_DGRAM) # UDP
+    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     sock.bind((host, port))
     while True:
-        data, addr = sock.recvfrom(1024) # buffer size is 1024 bytes
+        data, addr = sock.recvfrom(1024)
         logger.info("connection from: %s", addr)
         addresses.append(addr)
         if len(addresses) >= 2:
@@ -26,4 +25,4 @@ def main(host='0.0.0.0', port=9999):
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
-    main(*addr_from_args(sys.argv))
+    main()
